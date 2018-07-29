@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdran.btmovie.provider.mapper.MovieInfoMapper">
+  <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieInfo">
+    <id column="movie_id" jdbcType="VARCHAR" property="movieId" />
+    <result column="movie_name" jdbcType="VARCHAR" property="movieName" />
+    <result column="movie_bt" jdbcType="VARCHAR" property="movieBt" />
+    <result column="movie_poster" jdbcType="VARCHAR" property="moviePoster" />
+    <result column="movie_detail" jdbcType="VARCHAR" property="movieDetail" />
+    <result column="movie_score" jdbcType="VARCHAR" property="movieScore" />
+    <result column="movie_type" jdbcType="VARCHAR" property="movieType" />
+    <result column="movie_Starring" jdbcType="VARCHAR" property="movieStarring" />
+    <result column="movie_area" jdbcType="VARCHAR" property="movieArea" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    movie_id, movie_name, movie_bt, movie_poster, movie_detail, movie_score, movie_type, 
+    movie_Starring, movie_area
+  </sql>
+  <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample">
+    delete from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info (movie_id, movie_name, movie_bt, 
+      movie_poster, movie_detail, movie_score, 
+      movie_type, movie_Starring, movie_area
+      )
+    values (#{movieId,jdbcType=VARCHAR}, #{movieName,jdbcType=VARCHAR}, #{movieBt,jdbcType=VARCHAR}, 
+      #{moviePoster,jdbcType=VARCHAR}, #{movieDetail,jdbcType=VARCHAR}, #{movieScore,jdbcType=VARCHAR}, 
+      #{movieType,jdbcType=VARCHAR}, #{movieStarring,jdbcType=VARCHAR}, #{movieArea,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        movie_id,
+      </if>
+      <if test="movieName != null">
+        movie_name,
+      </if>
+      <if test="movieBt != null">
+        movie_bt,
+      </if>
+      <if test="moviePoster != null">
+        movie_poster,
+      </if>
+      <if test="movieDetail != null">
+        movie_detail,
+      </if>
+      <if test="movieScore != null">
+        movie_score,
+      </if>
+      <if test="movieType != null">
+        movie_type,
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring,
+      </if>
+      <if test="movieArea != null">
+        movie_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="movieName != null">
+        #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultType="java.lang.Long">
+    select count(*) from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie_info
+    <set>
+      <if test="record.movieId != null">
+        movie_id = #{record.movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieName != null">
+        movie_name = #{record.movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieBt != null">
+        movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviePoster != null">
+        movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieDetail != null">
+        movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieScore != null">
+        movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieType != null">
+        movie_type = #{record.movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieStarring != null">
+        movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieArea != null">
+        movie_area = #{record.movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie_info
+    set movie_id = #{record.movieId,jdbcType=VARCHAR},
+      movie_name = #{record.movieName,jdbcType=VARCHAR},
+      movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      movie_type = #{record.movieType,jdbcType=VARCHAR},
+      movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      movie_area = #{record.movieArea,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    <set>
+      <if test="movieName != null">
+        movie_name = #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        movie_bt = #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        movie_score = #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        movie_type = #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        movie_area = #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    set movie_name = #{movieName,jdbcType=VARCHAR},
+      movie_bt = #{movieBt,jdbcType=VARCHAR},
+      movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      movie_score = #{movieScore,jdbcType=VARCHAR},
+      movie_type = #{movieType,jdbcType=VARCHAR},
+      movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      movie_area = #{movieArea,jdbcType=VARCHAR}
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieInfo">
+    <id column="tpye_id" jdbcType="INTEGER" property="tpyeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tpye_id, type_name
+  </sql>
+  <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie_type
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from movie_type
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample">
+    delete from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_type (tpye_id, type_name)
+    values (#{tpyeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tpyeId != null">
+        tpye_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tpyeId != null">
+        #{tpyeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultType="java.lang.Long">
+    select count(*) from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie_type
+    <set>
+      <if test="record.tpyeId != null">
+        tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeName != null">
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie_type
+    set tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+      type_name = #{record.typeName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_type
+    <set>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_type
+    set type_name = #{typeName,jdbcType=VARCHAR}
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieInfo">
+    <id column="movie_id" jdbcType="VARCHAR" property="movieId" />
+    <result column="movie_name" jdbcType="VARCHAR" property="movieName" />
+    <result column="movie_bt" jdbcType="VARCHAR" property="movieBt" />
+    <result column="movie_poster" jdbcType="VARCHAR" property="moviePoster" />
+    <result column="movie_detail" jdbcType="VARCHAR" property="movieDetail" />
+    <result column="movie_score" jdbcType="VARCHAR" property="movieScore" />
+    <result column="movie_type" jdbcType="VARCHAR" property="movieType" />
+    <result column="movie_Starring" jdbcType="VARCHAR" property="movieStarring" />
+    <result column="movie_area" jdbcType="VARCHAR" property="movieArea" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    movie_id, movie_name, movie_bt, movie_poster, movie_detail, movie_score, movie_type, 
+    movie_Starring, movie_area
+  </sql>
+  <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample">
+    delete from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info (movie_id, movie_name, movie_bt, 
+      movie_poster, movie_detail, movie_score, 
+      movie_type, movie_Starring, movie_area
+      )
+    values (#{movieId,jdbcType=VARCHAR}, #{movieName,jdbcType=VARCHAR}, #{movieBt,jdbcType=VARCHAR}, 
+      #{moviePoster,jdbcType=VARCHAR}, #{movieDetail,jdbcType=VARCHAR}, #{movieScore,jdbcType=VARCHAR}, 
+      #{movieType,jdbcType=VARCHAR}, #{movieStarring,jdbcType=VARCHAR}, #{movieArea,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        movie_id,
+      </if>
+      <if test="movieName != null">
+        movie_name,
+      </if>
+      <if test="movieBt != null">
+        movie_bt,
+      </if>
+      <if test="moviePoster != null">
+        movie_poster,
+      </if>
+      <if test="movieDetail != null">
+        movie_detail,
+      </if>
+      <if test="movieScore != null">
+        movie_score,
+      </if>
+      <if test="movieType != null">
+        movie_type,
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring,
+      </if>
+      <if test="movieArea != null">
+        movie_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="movieName != null">
+        #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultType="java.lang.Long">
+    select count(*) from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie_info
+    <set>
+      <if test="record.movieId != null">
+        movie_id = #{record.movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieName != null">
+        movie_name = #{record.movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieBt != null">
+        movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviePoster != null">
+        movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieDetail != null">
+        movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieScore != null">
+        movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieType != null">
+        movie_type = #{record.movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieStarring != null">
+        movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieArea != null">
+        movie_area = #{record.movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie_info
+    set movie_id = #{record.movieId,jdbcType=VARCHAR},
+      movie_name = #{record.movieName,jdbcType=VARCHAR},
+      movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      movie_type = #{record.movieType,jdbcType=VARCHAR},
+      movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      movie_area = #{record.movieArea,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    <set>
+      <if test="movieName != null">
+        movie_name = #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        movie_bt = #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        movie_score = #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        movie_type = #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        movie_area = #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    set movie_name = #{movieName,jdbcType=VARCHAR},
+      movie_bt = #{movieBt,jdbcType=VARCHAR},
+      movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      movie_score = #{movieScore,jdbcType=VARCHAR},
+      movie_type = #{movieType,jdbcType=VARCHAR},
+      movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      movie_area = #{movieArea,jdbcType=VARCHAR}
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieInfo">
+    <id column="tpye_id" jdbcType="INTEGER" property="tpyeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tpye_id, type_name
+  </sql>
+  <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie_type
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from movie_type
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample">
+    delete from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_type (tpye_id, type_name)
+    values (#{tpyeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tpyeId != null">
+        tpye_id,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tpyeId != null">
+        #{tpyeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultType="java.lang.Long">
+    select count(*) from movie_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie_type
+    <set>
+      <if test="record.tpyeId != null">
+        tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeName != null">
+        type_name = #{record.typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie_type
+    set tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+      type_name = #{record.typeName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_type
+    <set>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_type
+    set type_name = #{typeName,jdbcType=VARCHAR}
+    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieInfo">
+    <id column="movie_id" jdbcType="VARCHAR" property="movieId" />
+    <result column="movie_name" jdbcType="VARCHAR" property="movieName" />
+    <result column="movie_bt" jdbcType="VARCHAR" property="movieBt" />
+    <result column="movie_poster" jdbcType="VARCHAR" property="moviePoster" />
+    <result column="movie_detail" jdbcType="VARCHAR" property="movieDetail" />
+    <result column="movie_score" jdbcType="VARCHAR" property="movieScore" />
+    <result column="movie_type" jdbcType="VARCHAR" property="movieType" />
+    <result column="movie_Starring" jdbcType="VARCHAR" property="movieStarring" />
+    <result column="movie_area" jdbcType="VARCHAR" property="movieArea" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    movie_id, movie_name, movie_bt, movie_poster, movie_detail, movie_score, movie_type, 
+    movie_Starring, movie_area
+  </sql>
+  <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from movie_info
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample">
+    delete from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info (movie_id, movie_name, movie_bt, 
+      movie_poster, movie_detail, movie_score, 
+      movie_type, movie_Starring, movie_area
+      )
+    values (#{movieId,jdbcType=VARCHAR}, #{movieName,jdbcType=VARCHAR}, #{movieBt,jdbcType=VARCHAR}, 
+      #{moviePoster,jdbcType=VARCHAR}, #{movieDetail,jdbcType=VARCHAR}, #{movieScore,jdbcType=VARCHAR}, 
+      #{movieType,jdbcType=VARCHAR}, #{movieStarring,jdbcType=VARCHAR}, #{movieArea,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    insert into movie_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        movie_id,
+      </if>
+      <if test="movieName != null">
+        movie_name,
+      </if>
+      <if test="movieBt != null">
+        movie_bt,
+      </if>
+      <if test="moviePoster != null">
+        movie_poster,
+      </if>
+      <if test="movieDetail != null">
+        movie_detail,
+      </if>
+      <if test="movieScore != null">
+        movie_score,
+      </if>
+      <if test="movieType != null">
+        movie_type,
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring,
+      </if>
+      <if test="movieArea != null">
+        movie_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="movieName != null">
+        #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zdran.btmovie.provider.domain.MovieInfoExample" resultType="java.lang.Long">
+    select count(*) from movie_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie_info
+    <set>
+      <if test="record.movieId != null">
+        movie_id = #{record.movieId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieName != null">
+        movie_name = #{record.movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieBt != null">
+        movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moviePoster != null">
+        movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieDetail != null">
+        movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieScore != null">
+        movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieType != null">
+        movie_type = #{record.movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieStarring != null">
+        movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="record.movieArea != null">
+        movie_area = #{record.movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie_info
+    set movie_id = #{record.movieId,jdbcType=VARCHAR},
+      movie_name = #{record.movieName,jdbcType=VARCHAR},
+      movie_bt = #{record.movieBt,jdbcType=VARCHAR},
+      movie_poster = #{record.moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{record.movieDetail,jdbcType=VARCHAR},
+      movie_score = #{record.movieScore,jdbcType=VARCHAR},
+      movie_type = #{record.movieType,jdbcType=VARCHAR},
+      movie_Starring = #{record.movieStarring,jdbcType=VARCHAR},
+      movie_area = #{record.movieArea,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    <set>
+      <if test="movieName != null">
+        movie_name = #{movieName,jdbcType=VARCHAR},
+      </if>
+      <if test="movieBt != null">
+        movie_bt = #{movieBt,jdbcType=VARCHAR},
+      </if>
+      <if test="moviePoster != null">
+        movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      </if>
+      <if test="movieDetail != null">
+        movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="movieScore != null">
+        movie_score = #{movieScore,jdbcType=VARCHAR},
+      </if>
+      <if test="movieType != null">
+        movie_type = #{movieType,jdbcType=VARCHAR},
+      </if>
+      <if test="movieStarring != null">
+        movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      </if>
+      <if test="movieArea != null">
+        movie_area = #{movieArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieInfo">
+    update movie_info
+    set movie_name = #{movieName,jdbcType=VARCHAR},
+      movie_bt = #{movieBt,jdbcType=VARCHAR},
+      movie_poster = #{moviePoster,jdbcType=VARCHAR},
+      movie_detail = #{movieDetail,jdbcType=VARCHAR},
+      movie_score = #{movieScore,jdbcType=VARCHAR},
+      movie_type = #{movieType,jdbcType=VARCHAR},
+      movie_Starring = #{movieStarring,jdbcType=VARCHAR},
+      movie_area = #{movieArea,jdbcType=VARCHAR}
+    where movie_id = #{movieId,jdbcType=VARCHAR}
+  </update>
+</mapper>
