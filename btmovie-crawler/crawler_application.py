@@ -26,26 +26,27 @@ def get_info(info_sub_url):
 def gen_info(movie_arr,movie_type_arr,movie_poster_arr):
     movie_info_arr = []
     movie_index = 0
-
     movie_score_arr = []
 
     for item in movie_arr:
         if item.get("class") is None:
             movie_score_arr.append(item.next_sibling.string)
             movie_arr.remove(item)
+
+    print("movie_arr:{0}",len(movie_arr))
     for item in movie_arr:
 
         movie_info_item = {}
 
         movie_info_item["movie_id"] = re.split("\.|/", item["href"])[2]
-        movie_info_item["movie_name"] = item["title"]
+        movie_info_item["movie_name"] = item["title"].replace("'","\\'")
 
         item_info = get_info(item["href"])
         info = item_info.find("div",class_="c05")
-        movie_info_item["movie_detail"] = info.text
+        movie_info_item["movie_detail"] = info.text.replace("'","\\'")
         # 获取电影类型
         movie_info_item["movie_type"] = \
-            ",".join(re.split(" |,",movie_type_arr[movie_index].string))
+            ",".join(re.split(" |,",movie_type_arr[movie_index].string)).replace("'","\\'")
         movie_info_item["movie_score"] = movie_score_arr[movie_index]
         movie_info_item["movie_poster"] = movie_poster_arr[movie_index].get("data-src")
 
@@ -55,7 +56,7 @@ def gen_info(movie_arr,movie_type_arr,movie_poster_arr):
         starring_arr = []
         for starring_item in starring_tag_arr:
             starring_arr.append(starring_item.text)
-        movie_info_item["movie_starring"] = ",".join(starring_arr)
+        movie_info_item["movie_starring"] = ",".join(starring_arr).replace("'","\\'")
         # 获取下载地址
         bt_html = get_info("/vidlist/"+movie_info_item["movie_id"][2:]+".html")
 
