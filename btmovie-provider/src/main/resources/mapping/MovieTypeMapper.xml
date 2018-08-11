@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdran.btmovie.provider.mapper.MovieTypeMapper">
   <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieType">
-    <id column="tpye_id" jdbcType="INTEGER" property="tpyeId" />
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
     <result column="type_name" jdbcType="VARCHAR" property="typeName" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -64,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    tpye_id, type_name
+    type_id, type_name
   </sql>
   <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieTypeExample" resultMap="BaseResultMap">
     select
@@ -85,11 +85,11 @@
     select 
     <include refid="Base_Column_List" />
     from movie_type
-    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from movie_type
-    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.zdran.btmovie.provider.domain.MovieTypeExample">
     delete from movie_type
@@ -98,22 +98,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieType">
-    insert into movie_type (tpye_id, type_name)
-    values (#{tpyeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
+    insert into movie_type (type_id, type_name)
+    values (#{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieType">
     insert into movie_type
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tpyeId != null">
-        tpye_id,
+      <if test="typeId != null">
+        type_id,
       </if>
       <if test="typeName != null">
         type_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tpyeId != null">
-        #{tpyeId,jdbcType=INTEGER},
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
       </if>
       <if test="typeName != null">
         #{typeName,jdbcType=VARCHAR},
@@ -129,8 +129,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update movie_type
     <set>
-      <if test="record.tpyeId != null">
-        tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=INTEGER},
       </if>
       <if test="record.typeName != null">
         type_name = #{record.typeName,jdbcType=VARCHAR},
@@ -142,7 +142,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update movie_type
-    set tpye_id = #{record.tpyeId,jdbcType=INTEGER},
+    set type_id = #{record.typeId,jdbcType=INTEGER},
       type_name = #{record.typeName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,11 +155,11 @@
         type_name = #{typeName,jdbcType=VARCHAR},
       </if>
     </set>
-    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieType">
     update movie_type
     set type_name = #{typeName,jdbcType=VARCHAR}
-    where tpye_id = #{tpyeId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=INTEGER}
   </update>
 </mapper>
