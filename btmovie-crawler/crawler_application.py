@@ -11,7 +11,7 @@ def get_page(index):
         "User-Agent":
             "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36",
     }
-    page_resp = requests.get("http://www.btbtdy.net/btfl/dy" + index + ".html", headers=header)
+    page_resp = requests.get("http://www.btbtdy.net/btfl/dy1-" + index + ".html", headers=header)
     return BeautifulSoup(page_resp.text, "html.parser")
 
 
@@ -21,6 +21,7 @@ def get_info(info_sub_url):
             "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36",
     }
     movie_info = requests.get("http://www.btbtdy.net" + info_sub_url, headers=header)
+
     return BeautifulSoup(movie_info.text, "html.parser")
 
 def gen_info(movie_arr,movie_type_arr,movie_poster_arr):
@@ -61,13 +62,18 @@ def gen_info(movie_arr,movie_type_arr,movie_poster_arr):
         bt_html = get_info("/vidlist/"+movie_info_item["movie_id"][2:]+".html")
 
         bt_arr = bt_html.find("a",href=re.compile("^magnet.*$"),class_="d1")
-        movie_info_item["movie_bt"] = bt_arr.get("href")
+        if bt_arr is None:
+
+            movie_info_item["movie_bt"] = "暂无下载地址"
+        else:
+            movie_info_item["movie_bt"] = bt_arr.get("href")
 
         movie_info_arr.append(movie_info_item)
 
     return movie_info_arr
 if __name__ == "__main__":
-    for i in range(292):
+    for i in range(64,292):
+        print("开始第 {0} 页".format(i))
         page = get_page(str(i))
         result = gen_info(page.find_all("a", href=re.compile(".*/btdy/.*")),
                           page.find_all("p",class_ = "des"),
