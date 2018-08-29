@@ -7,7 +7,7 @@ spring:
   application:
     name: btmovie-provider
   datasource:
-    url: jdbc:mysql://localhost/BT_MOVIE
+    url: jdbc:mysql://localhost/BT_MOVIE?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
