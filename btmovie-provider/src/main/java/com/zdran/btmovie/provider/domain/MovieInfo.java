@@ -90,4 +90,29 @@ public class MovieInfo {
     public void setMovieArea(String movieArea) {
         this.movieArea = movieArea == null ? null : movieArea.trim();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"movieId\":\"")
+                .append(movieId).append('\"');
+        sb.append(",\"movieName\":\"")
+                .append(movieName).append('\"');
+        sb.append(",\"movieBt\":\"")
+                .append(movieBt).append('\"');
+        sb.append(",\"moviePoster\":\"")
+                .append(moviePoster).append('\"');
+        sb.append(",\"movieDetail\":\"")
+                .append(movieDetail).append('\"');
+        sb.append(",\"movieScore\":\"")
+                .append(movieScore).append('\"');
+        sb.append(",\"movieType\":\"")
+                .append(movieType).append('\"');
+        sb.append(",\"movieStarring\":\"")
+                .append(movieStarring).append('\"');
+        sb.append(",\"movieArea\":\"")
+                .append(movieArea).append('\"');
+        sb.append('}');
+        return sb.toString();
+    }
 }
