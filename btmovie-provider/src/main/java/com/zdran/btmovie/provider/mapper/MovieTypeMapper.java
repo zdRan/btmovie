@@ -10,7 +10,7 @@ public interface MovieTypeMapper {
 
     int deleteByExample(MovieTypeExample example);
 
-    int deleteByPrimaryKey(Integer tpyeId);
+    int deleteByPrimaryKey(Integer typeId);
 
     int insert(MovieType record);
 
@@ -18,7 +18,7 @@ public interface MovieTypeMapper {
 
     List<MovieType> selectByExample(MovieTypeExample example);
 
-    MovieType selectByPrimaryKey(Integer tpyeId);
+    MovieType selectByPrimaryKey(Integer typeId);
 
     int updateByExampleSelective(@Param("record") MovieType record, @Param("example") MovieTypeExample example);
 

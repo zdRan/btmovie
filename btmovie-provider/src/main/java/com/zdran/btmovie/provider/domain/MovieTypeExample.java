@@ -104,63 +104,63 @@ public class MovieTypeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andTpyeIdIsNull() {
-            addCriterion("tpye_id is null");
+        public Criteria andTypeIdIsNull() {
+            addCriterion("type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdIsNotNull() {
-            addCriterion("tpye_id is not null");
+        public Criteria andTypeIdIsNotNull() {
+            addCriterion("type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdEqualTo(Integer value) {
-            addCriterion("tpye_id =", value, "tpyeId");
+        public Criteria andTypeIdEqualTo(Integer value) {
+            addCriterion("type_id =", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdNotEqualTo(Integer value) {
-            addCriterion("tpye_id <>", value, "tpyeId");
+        public Criteria andTypeIdNotEqualTo(Integer value) {
+            addCriterion("type_id <>", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdGreaterThan(Integer value) {
-            addCriterion("tpye_id >", value, "tpyeId");
+        public Criteria andTypeIdGreaterThan(Integer value) {
+            addCriterion("type_id >", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("tpye_id >=", value, "tpyeId");
+        public Criteria andTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type_id >=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdLessThan(Integer value) {
-            addCriterion("tpye_id <", value, "tpyeId");
+        public Criteria andTypeIdLessThan(Integer value) {
+            addCriterion("type_id <", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("tpye_id <=", value, "tpyeId");
+        public Criteria andTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("type_id <=", value, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdIn(List<Integer> values) {
-            addCriterion("tpye_id in", values, "tpyeId");
+        public Criteria andTypeIdIn(List<Integer> values) {
+            addCriterion("type_id in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdNotIn(List<Integer> values) {
-            addCriterion("tpye_id not in", values, "tpyeId");
+        public Criteria andTypeIdNotIn(List<Integer> values) {
+            addCriterion("type_id not in", values, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdBetween(Integer value1, Integer value2) {
-            addCriterion("tpye_id between", value1, value2, "tpyeId");
+        public Criteria andTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("type_id between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
-        public Criteria andTpyeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("tpye_id not between", value1, value2, "tpyeId");
+        public Criteria andTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("type_id not between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
@@ -231,6 +231,76 @@ public class MovieTypeExample {
 
         public Criteria andTypeNameNotBetween(String value1, String value2) {
             addCriterion("type_name not between", value1, value2, "typeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassIsNull() {
+            addCriterion("type_class is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassIsNotNull() {
+            addCriterion("type_class is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassEqualTo(String value) {
+            addCriterion("type_class =", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassNotEqualTo(String value) {
+            addCriterion("type_class <>", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassGreaterThan(String value) {
+            addCriterion("type_class >", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassGreaterThanOrEqualTo(String value) {
+            addCriterion("type_class >=", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassLessThan(String value) {
+            addCriterion("type_class <", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassLessThanOrEqualTo(String value) {
+            addCriterion("type_class <=", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassLike(String value) {
+            addCriterion("type_class like", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassNotLike(String value) {
+            addCriterion("type_class not like", value, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassIn(List<String> values) {
+            addCriterion("type_class in", values, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassNotIn(List<String> values) {
+            addCriterion("type_class not in", values, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassBetween(String value1, String value2) {
+            addCriterion("type_class between", value1, value2, "typeClass");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeClassNotBetween(String value1, String value2) {
+            addCriterion("type_class not between", value1, value2, "typeClass");
             return (Criteria) this;
         }
     }

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zdran.btmovie.provider.domain.MovieType">
     <id column="type_id" jdbcType="INTEGER" property="typeId" />
     <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_class" jdbcType="VARCHAR" property="typeClass" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    type_id, type_name
+    type_id, type_name, type_class
   </sql>
   <select id="selectByExample" parameterType="com.zdran.btmovie.provider.domain.MovieTypeExample" resultMap="BaseResultMap">
     select
@@ -98,8 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zdran.btmovie.provider.domain.MovieType">
-    insert into movie_type (type_id, type_name)
-    values (#{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR})
+    insert into movie_type (type_id, type_name, type_class
+      )
+    values (#{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{typeClass,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zdran.btmovie.provider.domain.MovieType">
     insert into movie_type
@@ -110,6 +113,9 @@
       <if test="typeName != null">
         type_name,
       </if>
+      <if test="typeClass != null">
+        type_class,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="typeId != null">
@@ -117,6 +123,9 @@
       </if>
       <if test="typeName != null">
         #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeClass != null">
+        #{typeClass,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -135,6 +144,9 @@
       <if test="record.typeName != null">
         type_name = #{record.typeName,jdbcType=VARCHAR},
       </if>
+      <if test="record.typeClass != null">
+        type_class = #{record.typeClass,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -143,7 +155,8 @@
   <update id="updateByExample" parameterType="map">
     update movie_type
     set type_id = #{record.typeId,jdbcType=INTEGER},
-      type_name = #{record.typeName,jdbcType=VARCHAR}
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      type_class = #{record.typeClass,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -154,12 +167,16 @@
       <if test="typeName != null">
         type_name = #{typeName,jdbcType=VARCHAR},
       </if>
+      <if test="typeClass != null">
+        type_class = #{typeClass,jdbcType=VARCHAR},
+      </if>
     </set>
     where type_id = #{typeId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zdran.btmovie.provider.domain.MovieType">
     update movie_type
-    set type_name = #{typeName,jdbcType=VARCHAR}
+    set type_name = #{typeName,jdbcType=VARCHAR},
+      type_class = #{typeClass,jdbcType=VARCHAR}
     where type_id = #{typeId,jdbcType=INTEGER}
   </update>
 </mapper>

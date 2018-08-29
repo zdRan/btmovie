@@ -1,16 +1,18 @@
 package com.zdran.btmovie.provider.domain;
 
 public class MovieType {
-    private Integer tpyeId;
+    private Integer typeId;
 
     private String typeName;
 
-    public Integer getTpyeId() {
-        return tpyeId;
+    private String typeClass;
+
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public void setTpyeId(Integer tpyeId) {
-        this.tpyeId = tpyeId;
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public String getTypeName() {
@@ -19,5 +21,13 @@ public class MovieType {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName == null ? null : typeName.trim();
+    }
+
+    public String getTypeClass() {
+        return typeClass;
+    }
+
+    public void setTypeClass(String typeClass) {
+        this.typeClass = typeClass == null ? null : typeClass.trim();
     }
 }
