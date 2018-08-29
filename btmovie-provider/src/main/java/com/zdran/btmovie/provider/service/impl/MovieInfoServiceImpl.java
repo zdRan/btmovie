@@ -1,5 +1,7 @@
 package com.zdran.btmovie.provider.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.zdran.btmovie.provider.domain.MovieInfo;
 import com.zdran.btmovie.provider.domain.MovieInfoExample;
 import com.zdran.btmovie.provider.mapper.MovieInfoMapper;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author cm.zdran@gmail.com
  */
 @Service
-public class MovieInfoServiceImpl implements IMovieInfoService{
+public class MovieInfoServiceImpl implements IMovieInfoService {
     @Autowired
     private MovieInfoMapper movieInfoMapper;
 
@@ -21,4 +23,15 @@ public class MovieInfoServiceImpl implements IMovieInfoService{
     public MovieInfo getMovieById(String id) {
         return movieInfoMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public Page<MovieInfo> getMovieByPage(int pageNum, int pageSize, String type) {
+        return PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> {
+            MovieInfoExample example = new MovieInfoExample();
+            example.or().andMovieTypeLike("%" + type + "%");
+            movieInfoMapper.selectByExample(example);
+        });
+    }
+
+
 }
